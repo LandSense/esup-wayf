@@ -1,4 +1,4 @@
-esup-wayf documentation
+# LandSense WAYF based on esup-wayf
 
 ## To install the software SWITCHwayf :
 
