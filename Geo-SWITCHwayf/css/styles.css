@@ -10,6 +10,12 @@ html, body {
   Xfont: normal 10px arial,sans-serif;
 }
 
+.ui-label-item {
+    color: black;
+    cursor: none;
+    font-weight: bold;
+    padding: 10px;
+}
 
 /* Responsive logo */
 #header-logo {

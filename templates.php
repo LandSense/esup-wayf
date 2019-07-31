@@ -321,12 +321,18 @@ function printOptionElement($IDProviders, $key, $selectedIDP){
 }
 
 function geoDataAttributes($GeolocationHint) {
-	if ($GeolocationHint &&
-	    preg_match("/^(-?[0-9.]+),(-?[0-9.]+)$/", $GeolocationHint, $match)){
+	if ($GeolocationHint)
+	{
+	    if (is_array($GeolocationHint))
+		$GeolocationHint = $GeolocationHint['0'];
+
+	    if (preg_match("/^(-?[0-9.]+),(-?[0-9.]+)$/", $GeolocationHint, $match))
 		return sprintf(' data-lat="%s" data-lon="%s"', $match[1], $match[2]);
-        } else {
+	    else
 		return '';
-	}
+        } 
+	else 
+		return '';
 }
 
 /******************************************************************************/

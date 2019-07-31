@@ -88,7 +88,7 @@ function initConfigOptions(){
 	$defaults['metadataFile'] = '/etc/shibboleth/metadata.switchaai.xml';
 	$defaults['metadataIDPFile'] = 'IDProvider.metadata.php';
 	$defaults['metadataSPFile'] = 'SProvider.metadata.php';
-	$defaults['metadataLockFile'] = (substr($_SERVER['PATH'],0,1) == '/') ? '/tmp/wayf_metadata.lock' : 'C:\windows\TEMP';
+	$defaults['metadataLockFile'] = (substr($_SERVER['HOME'],0,1) == '/') ? '/tmp/wayf_metadata.lock' : 'C:\windows\TEMP';
 	$defaults['WAYFLogFile'] = '/var/log/wayf/wayf.log'; 
 	$defaults['kerberosRedirectURL'] = dirname($_SERVER['SCRIPT_NAME']).'kerberosRedirect.php';
 	$defaults['developmentMode'] = false;
@@ -265,8 +265,9 @@ function getHostNameFromURI($string){
 	
 	// Check if string is URN
 	if (preg_match('/^urn:mace:/i', $string)){
+		$x = explode(':', $string);
 		// Return last component of URN
-		return end(explode(':', $string));
+		return end($x);
 	}
 	
 	// Apparently we are dealing with something like a URL
@@ -284,7 +285,8 @@ function getDomainNameFromURI($string){
 	// Check if string is URN
 	if (preg_match('/^urn:mace:/i', $string)){
 		// Return last component of URN
-		return getTopLevelDomain(end(explode(':', $string)));
+		$x = explode(':', $string);
+		return getTopLevelDomain(end($x));
 	}
 	
 	// Apparently we are dealing with something like a URL
@@ -812,6 +814,10 @@ function isRequestType($type){
 /******************************************************************************/
 // Checks for substrings in Path Info and returns true if match was found
 function isPartOfPathInfo($needle){
+//error_log("PATH_INFO: " . $_SERVER['PATH_INFO']);
+//error_log("needle: " . $needle);
+//error_log("regex: " . preg_match('|/'.$needle.'|', $_SERVER['PATH_INFO']));
+
 	if (
 		isset($_SERVER['PATH_INFO']) 
 		&& !empty($_SERVER['PATH_INFO'])

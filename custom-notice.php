@@ -21,9 +21,9 @@
 <body>
 	<div id="wrap">
 		<div class="container">
-			<div class="row">
+			<!--div class="row">
 				<header id="header-logo" class="center-block"></header>
-			</div>
+			</div-->
 			<div class="row">
 				<form class="vcenter" id="IdPList" name="IdPList" method="post" action="<?php echo $actionURL ?>">
 					<div class="text-center" id="userInputArea">

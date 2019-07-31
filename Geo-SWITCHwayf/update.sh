@@ -27,6 +27,10 @@ case $1 in
 	url="https://metadata.federation.renater.fr/test/preview/preview-all-renater-test-metadata.xml";;
     "edugain")
 	url="https://metadata.federation.renater.fr/edugain/main/main-all-edugain-metadata.xml";;
+    "landsense")
+	url="https://cc.landsense.eu/landsense-metadata.xml";;
+    "social")
+	url="https://cc.landsense.eu/landsense-metadata.xml";;
     *)
 	echo "Error"
         echo "Unknown federation, please update this script"

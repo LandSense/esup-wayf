@@ -11,9 +11,9 @@
 				</div>
 			<?php endif ?>
 
-			<div class="row">
+			<!--div class="row">
 				<header id="header-logo" class="center-block"></header>
-			</div>
+			</div-->
 
 			<div class="row text-center">
 				<div class="marge-div">
@@ -48,7 +48,7 @@
 						<?php endif ?>
 							<div class="panel-body">
 								<div id="barreDeRecherche" class="input-group">
-									<label class="sr-only" for="recherche"><?php echo $searchBarText; ?></label>
+									<label class="sr-only" for="recherche"><?php echo  $searchBarText; ?></label>
 									<div id="search-icon" class="input-group-addon"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></div>
 									<input type="text" class="form-control" id="recherche" placeholder="<?php echo $searchBarText; ?>">
 								</div>
@@ -98,7 +98,7 @@
 					<option value="-" <?php echo $defaultSelected ?>><?php echo getLocalString('select_idp') ?> ...</option>
 					<?php printDropDownList($IDProviders, $selectedIDP) ?>
 				</select>
-				<input type="checkbox" name="permanent" id="rememberPermanent" value="100"><?php echo getLocalString('permanently_remember_selection') ?>
+				<input type="hidden" name="session" id="rememberForSession" value="true">
 				<input id="form-button" type="submit" name="Select" accesskey="s" value="<?php echo getLocalString('select_button') ?>"> 
 			</div>
 		</div>

@@ -4,9 +4,9 @@
 
 		<div class="container">
 
-			<div class="row">
+			<!--div class="row">
 				<header id="header-logo" class="center-block"></header>
-			</div>
+			</div-->
 
 			<div class="row text-center">
 				<div>

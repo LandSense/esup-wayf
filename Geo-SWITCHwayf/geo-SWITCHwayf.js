@@ -19,6 +19,8 @@ var tabIDP = {};
 
 var knownIDP = [];
 
+var labelList = [];
+
 function selectMyFederation(){
 	select.value = myFederationShibURL;
 	$('#form-button').trigger('click');
@@ -119,6 +121,9 @@ $(function(){
 
 			$.each(IDPtoDisplay, function(i, idp){
 
+			   if (!labelList.includes(idp))
+			   {
+			   
 				var li = $('<li/>')
 				.addClass('ui-menu-item')
 				.attr('role', 'menuitem')
@@ -151,6 +156,15 @@ $(function(){
 					tabLatLng.push(tabIDP[idp].marker.getLatLng());
 					markerLayer.addLayer(tabIDP[idp].marker);
 				}
+			    }
+			    else
+			    {
+				var li = $('<li/>')
+                                .addClass('ui-label-item')
+				.text(idp)
+                                .attr('role', 'menuitem')
+                                .appendTo(div);
+			    }
 			});
 		}
 
@@ -208,11 +222,29 @@ $(function(){
 	};
 
 	 //fetchDefaultLogoCROUS();
-	
-	$.each($('#userIdPSelection optgroup[id="idpList"] option'), function(i, selected){
 
+	$.each($('#userIdPSelection optgroup[id="idpList"]'), function(i, optgroup) {
+	    labelList.push(optgroup.label);
+	});
+
+	console.log("label list: " + labelList);
+
+	// print categroies as seperator
+	$.each($('#userIdPSelection optgroup[id="idpList"]'), function(i, optgroup) {
+    	    //console.log("label: " + optgroup.label);
+
+	    tabIDP[optgroup.label] = new IDP(optgroup.label, optgroup.label);
+	    tabIDP[optgroup.label].label = true;
+	    tabIDP[optgroup.label].marker = false;
+	    tabIDP[optgroup.label].isGeo = false;
+	    
+    	    $(optgroup).children('option').each(function(i, selected){
+	        
+		//console.log("option: " + selected.getAttribute('data'));
+	
 		var nIDP;
 
+	    
 		if (selected.getAttribute('data')){
 			nIDP = new IDP(selected.value, selected.getAttribute('data'));
 			tabIDP[selected.text] = nIDP;
@@ -280,6 +312,7 @@ $(function(){
 				clickList(tabIDP[selected.text].URLShibboleth);
 			});
 		}
+	    })
 
 	});
 	

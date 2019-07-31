@@ -124,6 +124,7 @@ if(isValidDSRequest()){
 // Delete all cookies
 if (isRequestType('deleteSettings')){
 	$cookies = array($redirectCookieName, $redirectStateCookieName, $SAMLDomainCookieName, $SPCookieName);
+error_log("cookies to be deleted: " . var_export($cookies,1));
 	foreach ($cookies as $cookie){ 
 		if (isset($_COOKIE[$cookie])){
 			setcookie($cookie,'',time()-86400, '/', $commonDomain, $cookieSecurity, $cookieSecurity);
