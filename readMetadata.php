@@ -665,7 +665,8 @@ function getAttributeConsumingServiceNames($RoleDescriptorNode){
 // Get GeolocationHint from discojuice feed (rely on discojuiceGeolocation/update.sh run in a cron)
 function addDiscojuiceGeolocation(&$metadataIDProviders) {
 	foreach (glob("Geo-SWITCHwayf/discojuice/*.json") as $file) {
-		foreach (json_decode(file_get_contents($file)) as $e) {
+		$json = json_decode(file_get_contents($file));
+		foreach ($json as $e) {
 			if (!isset($metadataIDProviders[$e->entityID])) continue;
 			$IDP = &$metadataIDProviders[$e->entityID];
 			if (isset($IDP['GeolocationHint'])) continue;

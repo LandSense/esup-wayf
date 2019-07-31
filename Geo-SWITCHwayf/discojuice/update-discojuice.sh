@@ -3,7 +3,7 @@
 MYDIR=$(dirname $(readlink -f $0))
 
 # Add urls to retrieve geolocation data
-GEOURLS="https://static.discojuice.org/feeds/edugain https://static.discojuice.org/feeds/renater"
+GEOURLS="https://static.discojuice.org/feeds/edugain https://static.discojuice.org/feeds/renater https://cc.landsense.eu/feed/landsense https://cc.landsense.eu/feed/social"
 
 cd $MYDIR
 
